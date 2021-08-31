@@ -1,11 +1,13 @@
 import React,{useState,useEffect} from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Redirect } from "react-router";
 /** @jsxImportSource @emotion/react */
 import { css} from "@emotion/react";
 import { Pane,Button } from "evergreen-ui";
 import { mockData } from "../../data/data"
 import ProductTable from "../tables/table";
+import { ActionCreators } from "../../state";
 
 import LayoutMaster from "../layout/master";
 
@@ -18,7 +20,8 @@ const centerForm = css`
 const List = () => {
   const [data, setData] = useState([]);
   const state = useSelector((state)=>state);
-  console.log(state);
+  const dispatch = useDispatch();
+  const {add,edit} = bindActionCreators(ActionCreators,dispatch);
   const cols = [
     { id: 2, name: "Product Name" },
     { id: 3, name: "Current Price" },
@@ -51,9 +54,7 @@ const List = () => {
                 marginLeft={40}
                 appearance="primary"
                 width={145}
-                onClick={async () => {
-                    <Redirect to="/add" />
-                }}
+                onClick={() => { add("kweku kankam",34)}}
               >
                 Add New Product 
               </Button>
