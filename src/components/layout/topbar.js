@@ -15,7 +15,6 @@ const Topbar = ({ title }) => {
       </Pane>
       <Pane>
         {/* <NotificationsIcon color="" size={28} marginRight={16} /> */}
-        <Avatar isSolid name="MPharma" size={30} />
         <Button marginTop={-20} appearance="minimal" marginLeft={15}>
           Mpharma
         </Button>

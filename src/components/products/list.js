@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 /** @jsxImportSource @emotion/react */
 import { css} from "@emotion/react";
@@ -16,6 +17,8 @@ const centerForm = css`
 
 const List = () => {
   const [data, setData] = useState([]);
+  const state = useSelector((state)=>state);
+  console.log(state);
   const cols = [
     { id: 2, name: "Product Name" },
     { id: 3, name: "Current Price" },
@@ -24,7 +27,7 @@ const List = () => {
   ];
 
   useEffect(() => {
-    loadData();
+    //loadData();
   }, []);
 
   const loadData = async () => {

@@ -1,10 +1,8 @@
 import { combineReducers } from "redux"
-import ProductTable from "../tables/table";
+import normalizedData from "./normalize";
 
-const initialState = ()=>{
-    return [];
-}
-const ProductReducer = (state = initialState,action) =>{
+const initialState = normalizedData
+const ProductReducer = (state = initialState.entities.products,action) =>{
     switch(action.type){
         case "ADD" :
             return state;
@@ -17,7 +15,7 @@ const ProductReducer = (state = initialState,action) =>{
 
 }
 
-const priceReducer = (state = initialState,action) =>{
+const priceReducer = (state = initialState.entities.prices,action) =>{
     switch(action.type){
         case "ADD" :
             return state;
