@@ -7,8 +7,8 @@ export const mockData = () => {
         const data = await response.json();
         // check for error response
         if (response.ok) {
-          console.log(data);
-          return Promise.resolve(data.payload);
+        //   console.log(data);
+          return Promise.resolve(data.products);
         }
       })
       .catch((error) => {

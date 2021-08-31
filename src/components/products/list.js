@@ -1,8 +1,10 @@
 import React,{useState,useEffect} from "react";
+import { Redirect } from "react-router";
 /** @jsxImportSource @emotion/react */
 import { css} from "@emotion/react";
-import { Pane } from "evergreen-ui";
+import { Pane,Button } from "evergreen-ui";
 import { mockData } from "../../data/data"
+import ProductTable from "../tables/table";
 
 import LayoutMaster from "../layout/master";
 
@@ -27,8 +29,7 @@ const List = () => {
 
   const loadData = async () => {
      const res = await mockData();
-    // console.log("pricing");
-    // setData(res);
+    setData(res);
   };
   return (
     <Pane
@@ -39,7 +40,21 @@ const List = () => {
       display="flex"
       flexDirection="column"
     >
-      {/* <PricingTable cols={[cols]} data={data} /> */}
+        <Button
+                float="left"
+                marginBottom={8}
+                marginTop={8}
+                marginRight={8}
+                marginLeft={40}
+                appearance="primary"
+                width={145}
+                onClick={async () => {
+                    <Redirect to="/add" />
+                }}
+              >
+                Add New Product 
+              </Button>
+      <ProductTable cols={[cols]} data={data} />
     </Pane>
   );
 };

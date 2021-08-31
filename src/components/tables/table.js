@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Table, IconButton, Button } from "evergreen-ui";
 
-const Evergreentable = ({ data, cols }) => {
-
-  const tableData = filterData(data);
+const ProductTable = ({ data, cols }) => {
+  console.log(
+      data
+  )
+  const tableData = data;
 
   return (
     <Table>
@@ -23,12 +25,9 @@ const Evergreentable = ({ data, cols }) => {
             // isSelectable="false"
             // onSelect={() => alert("name")}
           >
-            <Table.TextCell>{dataitem.id}</Table.TextCell>
-            <Table.TextCell>{dataitem.contactperson}</Table.TextCell>
-            <Table.TextCell>{dataitem.primarycontact}</Table.TextCell>
-            <Table.TextCell>{dataitem.service}</Table.TextCell>
-            <Table.TextCell>{dataitem.vehiclebrand}</Table.TextCell>
-            <Table.TextCell>{dataitem.vehiclenumber}</Table.TextCell>
+            <Table.TextCell>{dataitem.name}</Table.TextCell>
+            <Table.TextCell>{dataitem.prices[0].price}</Table.TextCell>
+            
             <Table.TextCell>
               <Button
                 float="right"
@@ -37,7 +36,7 @@ const Evergreentable = ({ data, cols }) => {
                 marginRight={8}
                 appearance="minimal"
                 onClick={async () => {
-                  await navigate(`/agent/view/${dataitem.uid}`);
+                //   await navigate(`/agent/view/${dataitem.uid}`);
                 }}
               >
                 view
@@ -50,4 +49,4 @@ const Evergreentable = ({ data, cols }) => {
   );
 };
 
-export default Evergreentable;
+export default ProductTable;
