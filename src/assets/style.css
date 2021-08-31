@@ -1,0 +1,20 @@
+.leftbox{
+    width: 15%;
+    height: 100vh;
+    float: left;
+    /* background-color: #2c3338; */
+    background-color: #000;
+
+}
+
+.sidemenu-heading{
+    color: #fff;
+            padding: 30px 30px 5px 30px;
+}
+
+.sidemenu-hr{
+    margin-left: 20px;
+            height: 0.1px;
+            margin-right: 30px;
+     
+}
