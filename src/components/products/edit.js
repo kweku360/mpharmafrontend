@@ -49,9 +49,7 @@ const EditProduct = () => {
   const state = useSelector((state)=>state);
   const [name, setName] = useState(state.product.products[id].name);
 
-  useEffect(()=>{
-    // setName()
-  },[])
+
 
   const onSubmit = () => {
       edit(id,name,price);

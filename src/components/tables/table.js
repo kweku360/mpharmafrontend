@@ -40,6 +40,18 @@ const ProductTable = ({ data, cols }) => {
             <Table.TextCell>{data.prices[sortLatest(tableData[key].prices)[0]].price}</Table.TextCell>
             
             <Table.TextCell>
+            <Button
+                float="right"
+                marginBottom={8}
+                marginTop={8}
+                marginRight={8}
+                appearance="minimal"
+                onClick={() => {
+                   
+                }}
+              >
+                delete
+              </Button>
               <Button
                 float="right"
                 marginBottom={8}
@@ -52,6 +64,7 @@ const ProductTable = ({ data, cols }) => {
               >
                 edit
               </Button>
+            
             </Table.TextCell>
           </Table.Row>
         ))}

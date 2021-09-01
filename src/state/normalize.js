@@ -1,5 +1,5 @@
 import { normalize, schema} from "normalizr";
-import { getLocalStore } from "./localstore";
+
 const initialData = {
     "products": [
         {
@@ -57,13 +57,6 @@ const prices = new schema.Entity('prices');
 const product = new schema.Entity('products',{"prices":[prices]});
 
 const productList = new schema.Entity('productslist',{products:[product]});
-
-// const getData = ()=>{
-//     if(getLocalStore === undefined)
-//     return initialData
-
-//     return getLocalStore;
-// }
 
 const normalizedData = normalize(initialData,productList);
 export default normalizedData;

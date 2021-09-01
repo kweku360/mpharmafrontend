@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { css} from "@emotion/react";
 import { Pane,Button } from "evergreen-ui";
 import ProductTable from "../tables/table";
+import { getLocalStore } from "../../state/localstore";
 
 import {useHistory} from "react-router-dom"
 
@@ -17,6 +18,7 @@ const centerForm = css`
 
 const List = () => {
   const state = useSelector((state)=>state);
+  console.log(state);
   
   const history = useHistory()
   const cols = [
