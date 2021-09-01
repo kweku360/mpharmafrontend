@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import { Table, IconButton, Button } from "evergreen-ui";
+import React from "react";
+import { Table, Button } from "evergreen-ui";
 import {useHistory} from "react-router-dom"
+import { bindActionCreators } from "redux";
+import { ActionCreators } from "../../state";
+import { useDispatch } from "react-redux";
 
 const ProductTable = ({ data, cols }) => {
-  console.log(data);
+
   const history = useHistory()
   const tableData = data.products;
+  const dispatch = useDispatch();
+  const {remove} = bindActionCreators(ActionCreators,dispatch);
   const sortLatest = (arr) =>{
     return arr.sort((a,b)=>{
       const date1 = new Date(data.prices[a].date);
@@ -47,7 +52,7 @@ const ProductTable = ({ data, cols }) => {
                 marginRight={8}
                 appearance="minimal"
                 onClick={() => {
-                   
+                  remove(key);
                 }}
               >
                 delete
