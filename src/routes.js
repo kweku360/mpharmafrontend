@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router } from "react-router-dom"
 import List from "./components/products/list"
 import Add from "./components/products/add"
 import Edit from "./components/products/edit"
+import ListHistory from "./components/products/history";
 
 const routes = () => {
     return (
@@ -15,6 +16,9 @@ const routes = () => {
             </Route>
             <Route path="/edit/:id">
               <Edit/>
+            </Route>
+            <Route path="/history/:id">
+              <ListHistory/>
             </Route>
         </Router>
     )

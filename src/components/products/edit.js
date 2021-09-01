@@ -84,6 +84,7 @@ const EditProduct = () => {
               <Button
                 onClick={(e) => {
                   e.preventDefault();
+                  history.push("/")
                 }}
                 marginRight={100}
                 height={40}
