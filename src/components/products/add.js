@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LayoutMaster from "../layout/master";
+import { bindActionCreators } from "redux";
 // import { savePricing } from "../../../data/pricing";
 import {
   TextInputField,
@@ -13,6 +14,10 @@ import {
 
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/react";
+import { useDispatch } from "react-redux";
+import { ActionCreators } from "../../state";
+import {useHistory} from "react-router-dom"
+
 
 const centerForm = css`
   margin-left: 80px;
@@ -33,27 +38,17 @@ const selectCustom = css`
 `;
 
 const AddProduct = () => {
-//   const { register, errors, handleSubmit } = useForm({
-//     validateCriteriaMode: "all",
-//   });
 
-  const [loader, setLoader] = useState(false);
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const dispatch = useDispatch();
+  const {add} = bindActionCreators(ActionCreators,dispatch);
 
-  const onSubmit = (data) => {
-      //console.log(data);
-      // perform Save operation
-     // setLoader(true);
-  };
+  const history = useHistory()
 
-  const savePricingModel = async (data) => {
-    // const result = await savePricing(data);
-    // setLoader(false);
-    // if (result.status == "true") {
-    //   toaster.success("Product Saved Successfully");
-    //   return;
-    // } else {
-    //   toaster.danger("Unable to Save Product ." + result.message);
-    // }
+  const onSubmit = () => {
+      add(name,price);
+      history.push("/")
   };
 
   return (
@@ -65,24 +60,23 @@ const AddProduct = () => {
       display="flex"
       flexDirection="column"
     >
-      {loader ? (
-        <Pane>
-          <Spinner marginX="auto" marginY={120} />
-          <Text size={500}>Saving Data ...</Text>
-        </Pane>
-      ) : (
         <Pane width="50%">
-          <form onSubmit={onSubmit()}>
+          <form>
             <TextInputField
               label="Product"
-              // description="This is a description."
               placeholder="Enter Product Name"
               name="product"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
             />
             <TextInputField
               label="Price"
               placeholder="Enter Price"
               name="price"
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
             />
             <Pane marginTop="30">
               <Button
@@ -100,13 +94,16 @@ const AddProduct = () => {
                 height={40}
                 appearance="primary"
                 iconAfter="arrow-right"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSubmit(e)
+                }}
               >
                 Save
               </Button>
             </Pane>
           </form>
-        </Pane>
-      )}
+        </Pane>      
     </Pane>
   );
 };

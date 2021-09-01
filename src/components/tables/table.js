@@ -2,31 +2,39 @@ import React, { useState } from "react";
 import { Table, IconButton, Button } from "evergreen-ui";
 
 const ProductTable = ({ data, cols }) => {
-  console.log(
-      data
-  )
-  const tableData = data;
-
+  const tableData = data.products;
+  const sortLatest = (arr) =>{
+    return arr.sort((a,b)=>{
+      const date1 = new Date(data.prices[a].date);
+      const date2 = new Date(data.prices[b].date);
+      if (date1 < date2) {
+        return 1;
+      }
+      if (date1 > date2) {
+        return -1;
+      }
+      return 0;
+    })
+  }
   return (
-    <Table>
+    <Table width={800}>
       <Table.Head>
         {cols[0].map((colItem, index) => {
           return (
-            <Table.TextHeaderCell key={index}>
+            <Table.TextHeaderCell  key={index}>
               {colItem.name}
             </Table.TextHeaderCell>
           );
         })}
       </Table.Head>
       <Table.VirtualBody height={550}>
-        {tableData.map((dataitem) => (
+        {Object.keys(tableData).map((key,value) => (
           <Table.Row
-            key={dataitem.id}
-            // isSelectable="false"
-            // onSelect={() => alert("name")}
+            key={key}
           >
-            <Table.TextCell>{dataitem.name}</Table.TextCell>
-            <Table.TextCell>{dataitem.prices[0].price}</Table.TextCell>
+            <Table.TextCell>{tableData[key].name}</Table.TextCell>
+        
+            <Table.TextCell>{data.prices[sortLatest(tableData[key].prices)[0]].price}</Table.TextCell>
             
             <Table.TextCell>
               <Button
