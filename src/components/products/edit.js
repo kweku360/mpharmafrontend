@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import LayoutMaster from "../layout/master";
+import { bindActionCreators } from "redux";
 // import { savePricing } from "../../../data/pricing";
 import {
   TextInputField,
@@ -13,6 +14,10 @@ import {
 
 /** @jsxImportSource @emotion/react */
 import { css, jsx } from "@emotion/react";
+import { useDispatch,useSelector } from "react-redux";
+import { ActionCreators } from "../../state";
+import {useHistory,useParams} from "react-router-dom"
+
 
 const centerForm = css`
   margin-left: 80px;
@@ -33,27 +38,24 @@ const selectCustom = css`
 `;
 
 const EditProduct = () => {
-//   const { register, errors, handleSubmit } = useForm({
-//     validateCriteriaMode: "all",
-//   });
 
-  const [loader, setLoader] = useState(false);
+  
+  const [price, setPrice] = useState("");
+  const dispatch = useDispatch();
+  const {edit} = bindActionCreators(ActionCreators,dispatch);
 
-  const onSubmit = (data) => {
-      //console.log(data);
-      // perform Save operation
-     // setLoader(true);
-  };
+  const history = useHistory()
+  let { id } = useParams();
+  const state = useSelector((state)=>state);
+  const [name, setName] = useState(state.product.products[id].name);
 
-  const savePricingModel = async (data) => {
-    // const result = await savePricing(data);
-    // setLoader(false);
-    // if (result.status == "true") {
-    //   toaster.success("Product Saved Successfully");
-    //   return;
-    // } else {
-    //   toaster.danger("Unable to Save Product ." + result.message);
-    // }
+  useEffect(()=>{
+    // setName()
+  },[])
+
+  const onSubmit = () => {
+      edit(id,name,price);
+       history.push("/")
   };
 
   return (
@@ -65,24 +67,24 @@ const EditProduct = () => {
       display="flex"
       flexDirection="column"
     >
-      {loader ? (
-        <Pane>
-          <Spinner marginX="auto" marginY={120} />
-          <Text size={500}>Saving Data ...</Text>
-        </Pane>
-      ) : (
         <Pane width="50%">
-          <form onSubmit={onSubmit()}>
+          <form>
             <TextInputField
               label="Product"
-              // description="This is a description."
               placeholder="Enter Product Name"
               name="product"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
             />
             <TextInputField
               label="Price"
               placeholder="Enter Price"
               name="price"
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
             />
             <Pane marginTop="30">
               <Button
@@ -100,13 +102,16 @@ const EditProduct = () => {
                 height={40}
                 appearance="primary"
                 iconAfter="arrow-right"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSubmit(e)
+                }}
               >
                 Save
               </Button>
             </Pane>
           </form>
-        </Pane>
-      )}
+        </Pane>      
     </Pane>
   );
 };

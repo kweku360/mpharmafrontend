@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Table, IconButton, Button } from "evergreen-ui";
+import {useHistory} from "react-router-dom"
 
 const ProductTable = ({ data, cols }) => {
+  console.log(data);
+  const history = useHistory()
   const tableData = data.products;
   const sortLatest = (arr) =>{
     return arr.sort((a,b)=>{
@@ -43,11 +46,11 @@ const ProductTable = ({ data, cols }) => {
                 marginTop={8}
                 marginRight={8}
                 appearance="minimal"
-                onClick={async () => {
-                //   await navigate(`/agent/view/${dataitem.uid}`);
+                onClick={() => {
+                   history.push(`/edit/${key}`);
                 }}
               >
-                view
+                edit
               </Button>
             </Table.TextCell>
           </Table.Row>

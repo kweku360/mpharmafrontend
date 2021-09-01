@@ -13,7 +13,7 @@ const routes = () => {
             <Route path="/add">
               <Add/>
             </Route>
-            <Route path="/edit">
+            <Route path="/edit/:id">
               <Edit/>
             </Route>
         </Router>

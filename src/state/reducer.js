@@ -9,11 +9,16 @@ const ProductReducer = (state = initialState.entities,action) =>{
     switch(action.type){
         case "ADD" :
             console.log(state)
-            let newstate = state;
-            newstate.prices[nextPriceId] = {id:nextPriceId,price:action.payload.price,date:action.payload.date}
-            newstate.products[nextProductId] = {id:nextProductId,name:action.payload.name,prices:[nextPriceId]};
-            return newstate;
+            // let newstate = state;
+            // newstate.prices[nextPriceId] = {id:nextPriceId,price:action.payload.price,date:action.payload.date}
+            // newstate.products[nextProductId] = {id:nextProductId,name:action.payload.name,prices:[nextPriceId]};
+            return  {
+                ...state,
+                  prices : {...state.prices,[nextPriceId] : {id:nextPriceId,price:action.payload.price,date:action.payload.date}},
+                  products: {...state.products,[nextProductId]:{id:nextProductId,name:action.payload.name,prices:[nextPriceId]}}    
+            };
         case "EDIT" :
+            console.log(state)
             return state;
         default :
             return state

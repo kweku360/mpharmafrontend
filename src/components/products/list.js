@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 /** @jsxImportSource @emotion/react */
 import { css} from "@emotion/react";
 import { Pane,Button } from "evergreen-ui";
