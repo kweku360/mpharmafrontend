@@ -1,5 +1,5 @@
 import React from "react";
-import { Pane, Heading, Avatar, Button } from "evergreen-ui";
+import { Pane, Heading, Button } from "evergreen-ui";
 
 const Topbar = ({ title }) => {
   return (

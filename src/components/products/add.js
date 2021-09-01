@@ -9,7 +9,7 @@ import {
 } from "evergreen-ui";
 
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import { useDispatch } from "react-redux";
 import { ActionCreators } from "../../state";
 import {useHistory} from "react-router-dom"
@@ -19,18 +19,6 @@ const centerForm = css`
   margin-left: 80px;
   width: 40%;
   padding: 10px;
-`;
-
-const selectCustom = css`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 4-px;
-  padding: 10px 38px 10px 16px;
-  background-size: 10px;
-  transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-  border: 1px solid #ddd;
-  border-radius: 3px;
 `;
 
 const AddProduct = () => {
@@ -69,6 +57,9 @@ const AddProduct = () => {
             <TextInputField
               label="Price"
               placeholder="Enter Price"
+              type="number" 
+              min="0" 
+              step="1"
               name="price"
               onChange={(e) => {
                 setPrice(e.target.value);

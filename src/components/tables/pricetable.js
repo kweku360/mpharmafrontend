@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button } from "evergreen-ui";
+import { Table } from "evergreen-ui";
 
 const PriceTable = ({ data,id, cols }) => {
 

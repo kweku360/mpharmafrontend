@@ -2,10 +2,10 @@ import React,{useState} from "react";
 import { useSelector } from "react-redux";
 /** @jsxImportSource @emotion/react */
 import { css} from "@emotion/react";
-import { Pane,Button } from "evergreen-ui";
+import { Pane } from "evergreen-ui";
 import PriceTable from "../tables/pricetable";
 
-import {useHistory,useParams} from "react-router-dom"
+import {useParams} from "react-router-dom"
 
 import LayoutMaster from "../layout/master";
 
@@ -19,7 +19,6 @@ const PriceHistory = () => {
   const state = useSelector((state)=>state);
   let { id } = useParams();
   const [name, setName] = useState(state.product.products[id].name);
-  console.log(state);
 
   const cols = [
     { id: 2, name: "Price" },

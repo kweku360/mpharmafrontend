@@ -17,7 +17,6 @@ const centerForm = css`
 
 const List = () => {
   const state = useSelector((state)=>state);
-  console.log(state);
   
   const history = useHistory()
   const cols = [
